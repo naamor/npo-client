@@ -7,7 +7,7 @@ This is a proof of concept made for my diploma thesis based on my studies at [TE
 To run the NPO-Client as a Windows Service all the following software is required. To run the NPO-Client in a Linux Docker Container only Docker is required.
 
 - [Windows 10 Version 1903](https://www.microsoft.com/windows)
-- [.NET Core SDK 2.2](https://dotnet.microsoft.com/download)
+- [.NET Core SDK 3.0.100-preview7-012821](https://dotnet.microsoft.com/download/dotnet-core/3.0)
 - [Docker](https://www.docker.com/)
 
 To publish some messages on an MQTT topic "my/topic" and to read the messages on an Apache Kafka topic "test-topic", clients like these are helpful:
@@ -38,7 +38,7 @@ docker-compose -f docker-compose.services.yml up
 To register the NPO-Client the project has to be published with the following command:
 
 ```powershell
-dotnet publish -c Release -o "C:\Services\Release\netcoreapp2.2\publish\" -r win10-x64 --self-contained false
+dotnet publish -c Release -o "C:\Services\Release\netcoreapp3.0\publish\"
 ```
 
 ### Register client as Windows Service
@@ -46,7 +46,7 @@ dotnet publish -c Release -o "C:\Services\Release\netcoreapp2.2\publish\" -r win
 To be able to run the application as a Windows Service register it with the [SC-Tool](https://docs.microsoft.com/windows-server/administration/windows-commands/sc-create) by the following command. To execute the following command, use PowerShell as administrator:
 
 ```powershell
-sc.exe create NPO-Client binPath="C:\Services\Release\netcoreapp2.2\publish\NPO-Client.exe --environment=Development"
+sc.exe create NPO-Client-preview7 binPath="C:\Services\Release\netcoreapp3.0\publish\NPO-Client.exe --environment=Development"
 ```
 
 ### Delete client from Windows Services
